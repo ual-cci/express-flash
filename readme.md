@@ -2,10 +2,15 @@
 
   Flash Messages for your Express Application
 
-  [![Build Status](https://secure.travis-ci.org/RGBboy/express-flash.png)](http://travis-ci.org/RGBboy/express-flash)
+  Flash is an extension of `connect-flash` with the ability to define a flash message and render it without redirecting the request.
 
-  Flash is an extension of `connect-flash` with the ability to define a flash message
-  and render it without redirecting the request.
+  This version has been altered with patches from:
+  - @onnlucky
+  This fixes empty sessions being created when there are no flashes.
+  - @Fardinak
+  This adds a name to the main function for debugging
+  - @creativetechnologylab
+  This extends the functionality to provide an array of flashes that can be iterated over, rather than using the messages system which doesn't support multiple flashes of the same type, the example code for PUG/Jade also results in less duplicated code.
 
 ## Installation
 
@@ -45,10 +50,10 @@ Use `req.flash()` in your middleware
 
 Access the messages in your views via `locals.messages` (.jade in this case):
 
-``` jade
-  - if (messages.info)
-    .message.info
-      span= messages.info
+``` pug
+if flashes
+	each flash, f in flashes
+		.alert(class=`alert-${flash.type}`)=flash.message
 ```
 
 ## Requires
@@ -56,7 +61,7 @@ Access the messages in your views via `locals.messages` (.jade in this case):
   * cookieParser
   * session
 
-## License 
+## License
 
 (The MIT License)
 
