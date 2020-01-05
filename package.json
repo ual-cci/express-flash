@@ -38,5 +38,8 @@
     "test": "make test",
     "unit": "make unit",
     "spec": "make spec"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }
