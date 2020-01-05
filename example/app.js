@@ -8,19 +8,28 @@
 
 var express = require('express'),
     app = module.exports = express(),
+    bodyparser = require('body-parser'),
+    cookieparser = require('cookie-parser'),
+    session = require('express-session'),
+    errorhandler = require('express-errorhandler'),
     flash = require('../index');
 
 // Views
 app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 app.set('view options', { layout: false });
 
 // Configuration
-app.use(express.bodyParser());
+// Removed as appeared unused - @unknowndomain 2020/5/1
+// app.use(bodyparser());
 app.use(express.static(__dirname + '/public'));
 
-app.use(express.cookieParser('keyboard cat'));
-app.use(express.session({ cookie: { maxAge: 60000 }}));
+app.use(cookieparser('keyboard cat'));
+app.use(session({cookie: {maxAge: 60000},
+    resave: true,
+    saveUninitialized: true,
+    secret: 'keyboard kitten'
+}));
 
 // Flash
 app.use(flash());
@@ -55,7 +64,7 @@ app.get('/add-and-show-message', function (req, res) {
 });
 
 // Error Handler
-app.use(express.errorHandler());
+app.use(errorhandler());
 
 /**
  * Module exports.

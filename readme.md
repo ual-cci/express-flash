@@ -4,7 +4,7 @@
 
   Flash is an extension of `connect-flash` with the ability to define a flash message and render it without redirecting the request.
 
-  This version has been altered with patches from:
+  `express-flash-plus` is a fork of the original `express-flash` module but it contains several pull request the original repo still have not been accepted:
   - @onnlucky
   This fixes empty sessions being created when there are no flashes.
   - @Fardinak
