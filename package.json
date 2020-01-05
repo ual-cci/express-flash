@@ -14,7 +14,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "http://github.com/ual-cci/express-flash-plus"
+    "url": "http://github.com/ual-cci/express-flash"
   },
   "main": "index",
   "engines": {
