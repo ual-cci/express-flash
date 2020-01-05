@@ -1,6 +1,6 @@
 {
   "name": "express-flash-plus",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Flash Messages for your Express Application",
   "homepage": "https://github.com/RGBboy/express-flash",
   "keywords": [
