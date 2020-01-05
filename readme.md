@@ -1,65 +1,26 @@
-# Express Flash
+# Express Flash Plus
+Flash Messages for your Express Application
 
-  Flash Messages for your Express Application
+Flash is an extension of `connect-flash` with the ability to define a flash message and render it without redirecting the request.
 
-  Flash is an extension of `connect-flash` with the ability to define a flash message and render it without redirecting the request.
-
-  `express-flash-plus` is a fork of the original `express-flash` module but it contains several pull request the original repo still have not been accepted:
-  - @onnlucky
-  This fixes empty sessions being created when there are no flashes.
-  - @Fardinak
-  This adds a name to the main function for debugging
-  - @creativetechnologylab
-  This extends the functionality to provide an array of flashes that can be iterated over, rather than using the messages system which doesn't support multiple flashes of the same type, the example code for PUG/Jade also results in less duplicated code.
+`express-flash-plus` is a fork of the original `express-flash` module but it contains several pull request the original repo still have not been accepted:
+- @onnlucky
+This fixes empty sessions being created when there are no flashes.
+- @Fardinak
+This adds a name to the main function for debugging
+- @creativetechnologylab
+This extends the functionality to provide an array of flashes that can be iterated over, rather than using the messages system which doesn't support multiple flashes of the same type, the example code for PUG/Jade also results in less duplicated code.
+- @ual-cci
+Updated all the package versions to fix security issues then repaired broken tests from major/breaking version changes, moved from Jade to PUG, etc...
 
 ## Installation
+Works with Express 4.x.x
 
-  Works with Express 3.x.x
-
-    npm install git://github.com/RGBboy/express-flash.git
-
+npm install express-flash-plus
 
 ## Usage
+Set it up the same way you would `connect-flash`, see `./examples`
 
-  Set it up the same way you would `connect-flash`:
-
-``` javascript
-  var flash = require('express-flash'),
-      express = require('express'),
-      app = express();
-
-  app.use(express.cookieParser('keyboard cat'));
-  app.use(express.session({ cookie: { maxAge: 60000 }}));
-  app.use(flash());
-```
-
-Use `req.flash()` in your middleware
-
-``` javascript
-  app.get('/', function (req, res) {
-    req.flash('info', 'Welcome');
-    res.render('index', {
-      title: 'Home'
-    })
-  });
-  app.get('/addFlash', function (req, res) {
-    req.flash('info', 'Flash Message Added');
-    res.redirect('/');
-  });
-```
-
-Access the messages in your views via `locals.messages` (.jade in this case):
-
-``` pug
-if flashes
-	each flash, f in flashes
-		.alert(class=`alert-${flash.type}`)=flash.message
-```
-
-## Requires
-
-  * cookieParser
-  * session
 
 ## License
 
